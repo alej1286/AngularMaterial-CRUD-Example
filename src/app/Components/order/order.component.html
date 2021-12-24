@@ -136,7 +136,13 @@
   
               <ng-container matColumnDef="tipo">
                 <th style="width: 25%;" mat-header-cell *matHeaderCellDef mat-sort-header> Tipo de Bolsa </th>
-                <td mat-cell *matCellDef="let order"> {{order.tipo | tipoById:tipos}} </td>
+               
+              <td mat-cell *matCellDef="let order"> 
+                  <mat-cell *ngIf="order.tipo === 1">1.5Lbs</mat-cell>
+                  <mat-cell *ngIf="order.tipo === 2">3Lbs</mat-cell>
+                  <mat-cell *ngIf="order.tipo === 3">5Lbs</mat-cell>
+              </td>
+
               </ng-container>
               
               <ng-container matColumnDef="pallets">

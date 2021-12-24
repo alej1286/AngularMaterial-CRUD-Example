@@ -68,7 +68,7 @@ export class OrderComponent implements OnInit {
   constructor(private formbulider: FormBuilder, private OrdersService: OrdersService, private _snackBar: MatSnackBar, public dialog: MatDialog) {
     this.OrdersService.getAllOrders().subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
-      console.log(this.dataSource); 
+      //console.log(this.dataSource); 
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
@@ -76,6 +76,7 @@ export class OrderComponent implements OnInit {
     this.OrdersService.getAllTipos()
     .subscribe(tipos => {
         this.tipos = tipos as Tipo[]
+        //console.log(this.tipos);
     })
   }
 
