@@ -5,7 +5,4 @@ export class Order {
     pallets: number;
   }
 
-  export class Tipo {
-    id: number;
-    descr: string;
-  }
+ 

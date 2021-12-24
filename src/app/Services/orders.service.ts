@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 //import { Order } from "./orders.model";
-import { Order, Tipo } from "./order";
+import { Order } from "../Models/order";
+import { Tipo } from "../Models/tipo";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
@@ -78,11 +79,13 @@ export class OrdersService {
     )
   } */
 
-  updateOrder(order: Order): Observable<Order> {
+  updateOrder(id, data): Observable<Order> {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
-    return this.http.put<Order>(this.baseurl + '/orders/',
-      order, httpOptions);
+    console.log(id)
+    console.log(data)
+    return this.http.put<Order>(this.baseurl + '/orders/' + id,
+    JSON.stringify(data), httpOptions);
   }
 
 
@@ -99,11 +102,17 @@ export class OrdersService {
     )
   } */
 
-  deleteOrderById(orderid: string): Observable<number> {
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-    return this.http.delete<number>(this.baseurl + '/orders?id=' + orderid,
-      httpOptions);
+  deleteOrderById(order: any): Observable<string> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.http.delete<string>(this.baseurl + '/orders/' + order, httpOptions)
+    //return this.http.post<string>(this.baseurl + '/orders/', order, httpOptions);
   }
+
+
 
 
     /* addOrder(descr: string, tipo: string, pallets: number){
@@ -117,7 +126,7 @@ export class OrdersService {
     } */
 
     getAllTipos(): Observable<Tipo[]> {
-      return this.http.get<Tipo[]>(this.baseurl + '/tipo');
+      return this.http.get<Tipo[]>(this.baseurl + '/tipos');
     }
 
 // Error handling
