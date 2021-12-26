@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { BreakpointObserver} from '@angular/cdk/layout'
-import { MatDrawerMode, MatSidenav } from '@angular/material/sidenav';
-import { SidebarComponent } from '../sidebar/sidebar.component';
+import { MatSidenav } from '@angular/material/sidenav';
+
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
