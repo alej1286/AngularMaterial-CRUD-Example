@@ -107,21 +107,25 @@ export class OrderComponent implements OnInit {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row._id + 1}`;
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
   }
   DeleteData() {
-    debugger;
-    const numSelected = this.selection.selected;
+    let numSelected = this.selection.selected;
     if (numSelected.length > 0) {
       if (confirm("Are you sure to delete items ")) {
-        this.OrdersService.deleteOrderById(numSelected).subscribe(result => {
-          this.SavedSuccessful(2);
-          this.loadallOrders();
-        })
+        numSelected.map(order =>{
+          debugger;
+    
+          this.OrdersService.deleteOrderById(order.id).subscribe(result => {
+            console.log(result);
+            this.SavedSuccessful(2);
+            this.loadallOrders();
+          });
+        });
       }
-    } else {
-      alert("Select at least one row");
-    }
+  } else {
+    alert("Select at least one row");
+  }
   }
 
   /* applyFilter(filterValue: string) {
@@ -157,7 +161,7 @@ export class OrderComponent implements OnInit {
   }
   loadOrderToEdit(orderId: string) {
     this.OrdersService.getOrderById(orderId).subscribe(order => {
-      console.log(order[0]);
+      //console.log(order[0]);
     
       this.massage = null;
       this.dataSaved = false;
@@ -178,7 +182,7 @@ export class OrderComponent implements OnInit {
 
   }
   CreateOrder(order: Order) {
-    console.log(order);
+    //console.log(order);
     if (this.orderIdUpdate == null) {
       /* employee.CountryId = this.CountryId;
       employee.StateId = this.StateId;
@@ -199,6 +203,7 @@ export class OrderComponent implements OnInit {
       employee.StateId = this.StateId;
       employee.Cityid = this.CityId; */
       order.tipo = this.TipoId;
+      //console.log(this.orderIdUpdate,order);
       this.OrdersService.updateOrder(this.orderIdUpdate,order).subscribe(() => {
         this.dataSaved = true;
         this.SavedSuccessful(0);
@@ -235,7 +240,8 @@ export class OrderComponent implements OnInit {
   }
 
   FillStateDDL(SelCountryId) {
-    //this.allState = this.OrdersService.getState(SelCountryId.value);
+    //this.TipoId = this.OrdersService.getState(SelCountryId.value);
+    this.TipoId = SelCountryId.value;
     this.CountryId = SelCountryId.value;
     this.allCity = this.CityId = null;
   }

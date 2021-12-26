@@ -36,6 +36,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatDialogModule} from '@angular/material/dialog';
 import { OrderComponent } from './Components/order/order.component';
 import { tipoByIdPipe } from './Models/tipo-by-id.pipe';
+import { TDTipoBolsaTranslatorComponent } from './Components/order/td-tipo-bolsa-translator/td-tipo-bolsa-translator.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 const Ux_Modules = [
   MatButtonModule,
@@ -63,7 +65,8 @@ const Ux_Modules = [
     SidebarComponent,
     DashboardComponent,
     OrderComponent,
-    tipoByIdPipe
+    tipoByIdPipe,
+    TDTipoBolsaTranslatorComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +76,8 @@ const Ux_Modules = [
     FormsModule, 
     ReactiveFormsModule ,
     HttpClientModule,
-    CdkTableModule 
+    CdkTableModule,
+    FlexLayoutModule
 
   ],
   providers: [OrdersService],

@@ -5,16 +5,14 @@ import { DefaultComponent } from './Components/default/default.component';
 import { OrderComponent } from './Components/order/order.component';
 
 const routes: Routes = [
-  {path:'', component: DefaultComponent,
-  children : [
-    {path: 'dashboard', component: DashboardComponent},
+  {path:'', component: DefaultComponent},
+  {path: 'dashboard', component: DashboardComponent},
     {path:'orders', component: OrderComponent}
-    
+  /* children : [
+    {path: 'dashboard', component: DashboardComponent},
+    {path:'orders', component: OrderComponent}]
+  } */
 
-   
-  ]
-
-}
 ];
 
 @NgModule({
